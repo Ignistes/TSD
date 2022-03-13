@@ -9,7 +9,9 @@ namespace TSD.Linq.Task1.Lib.Test
     public class SimpleTests
     {
         GoldClient goldClient;
-
+        //HOTFIX !!!!
+        //HOTFIX !!!!
+        //HOTFIX !!!!
         [SetUp]
         public void Setup()
         {
