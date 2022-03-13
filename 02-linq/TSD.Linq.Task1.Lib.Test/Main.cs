@@ -149,6 +149,76 @@ namespace TSD.Linq.Task1.Lib.Test
 
         }
 
+        [Test]
+        public async Task Average()
+        {
 
+            GoldClient client = new GoldClient();
+            List<GoldPrice> prices2019 = await client.GetGoldPrices(new DateTime(2019, 01, 01), new DateTime(2019, 12, 31));
+            List<GoldPrice> prices2020 = await client.GetGoldPrices(new DateTime(2020, 01, 01), new DateTime(2020, 12, 31));
+            List<GoldPrice> prices2021 = await client.GetGoldPrices(new DateTime(2021, 01, 01), new DateTime(2021, 12, 31));
+
+            IEnumerable<double> prices2019Query =
+            from price in prices2019
+            select price.Price;
+
+            prices2019Query.ToList();
+            System.Console.WriteLine(prices2019Query.Average());
+
+            IEnumerable<double> prices2020Query =
+            from price in prices2020
+            select price.Price;
+
+            prices2020Query.ToList();
+            System.Console.WriteLine(prices2020Query.Average());
+
+            IEnumerable<double> prices2021Query =
+            from price in prices2021
+            select price.Price;
+
+            prices2021Query.ToList();
+            System.Console.WriteLine(prices2021Query.Average());
+
+        }
+
+        [Test]
+        public async Task invest()
+        {
+
+            GoldClient client = new GoldClient();
+            List<GoldPrice> prices = await client.GetGoldPrices(new DateTime(2019, 01, 01), new DateTime(2019, 12, 31));
+            List<GoldPrice> prices2020 = await client.GetGoldPrices(new DateTime(2020, 01, 01), new DateTime(2020, 12, 31));
+            List<GoldPrice> prices2021 = await client.GetGoldPrices(new DateTime(2021, 01, 01), new DateTime(2021, 12, 31));
+            List<GoldPrice> prices2022 = await client.GetGoldPrices(new DateTime(2022, 01, 01), new DateTime(2022, 03, 13));
+
+            prices.AddRange(prices2020);
+            prices.AddRange(prices2021);
+            prices.AddRange(prices2022);
+
+            IEnumerable<GoldPrice> min =
+            from price in prices
+            orderby price.Price ascending
+            select price;
+
+            List<GoldPrice> minimum = min.Take(1).ToList();
+
+
+            IEnumerable<GoldPrice> max =
+            from price in prices
+            orderby price.Price descending
+            where price.Date.CompareTo(minimum[0].Date) > 0
+            select price;
+
+            List<GoldPrice> maximum = max.Take(1).ToList();
+
+            System.Console.WriteLine("BUY");
+            System.Console.WriteLine(minimum[0].Date);
+            System.Console.WriteLine(minimum[0].Price);
+            System.Console.WriteLine("SELL");
+            System.Console.WriteLine(maximum[0].Date);
+            System.Console.WriteLine(maximum[0].Price);
+
+
+        }
     }
 }
