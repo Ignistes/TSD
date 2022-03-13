@@ -7,6 +7,7 @@ using System;
 using TSD.Linq.Task1.Lib.Model;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace TSD.Linq.Task1.Lib.Test
 {
@@ -217,8 +218,56 @@ namespace TSD.Linq.Task1.Lib.Test
             System.Console.WriteLine("SELL");
             System.Console.WriteLine(maximum[0].Date);
             System.Console.WriteLine(maximum[0].Price);
+            System.Console.WriteLine("BENEFITS");
+            System.Console.WriteLine(maximum[0].Price - minimum[0].Price);
 
 
+        }
+
+        [Test]
+        public async Task ToXMLinit()
+        {
+            GoldClient client = new GoldClient();
+            List<GoldPrice> prices = await client.GetGoldPrices(new DateTime(2019, 01, 01), new DateTime(2019, 12, 31));
+            List<GoldPrice> prices2020 = await client.GetGoldPrices(new DateTime(2020, 01, 01), new DateTime(2020, 12, 31));
+            List<GoldPrice> prices2021 = await client.GetGoldPrices(new DateTime(2021, 01, 01), new DateTime(2021, 12, 31));
+            List<GoldPrice> prices2022 = await client.GetGoldPrices(new DateTime(2022, 01, 01), new DateTime(2022, 03, 13));
+
+            prices.AddRange(prices2020);
+            prices.AddRange(prices2021);
+            prices.AddRange(prices2022);
+            await ToXML(prices);
+        }
+        public async Task ToXML(List<GoldPrice> l)
+        {
+
+            XDocument doc = new XDocument(new XElement("List_of_prices",
+                        from price in l
+                        select new XElement("Gold",
+                                    new XElement("Date", price.Date),
+                                    new XElement("Price", price.Price)
+                                )));
+
+            doc.Declaration = new XDeclaration("1.0", "utf-8", "true");
+
+            doc.Save(@"C:\\ListOfPrice.xml");
+
+        }
+        [Test]
+        public async Task XMLtoConsInit()
+        {
+            XDocument doc = XDocument.Load("C:\\ListOfPrice.xml");
+            XMLtoCons(doc);
+        }
+
+            public async Task XMLtoCons(XDocument doc)
+        {
+            foreach (XElement price in doc.Root.Elements())
+            {
+                Console.WriteLine("Date : {0}  Price : {1}",
+                                    price.Element("Date").Value,
+                                    price.Element("Price").Value);
+            }
         }
     }
 }
