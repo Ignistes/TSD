@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSD.Linq.Task1.Lib", "TSD.Linq.Task1.Lib\TSD.Linq.Task1.Lib.csproj", "{017E0749-7C2F-438B-911A-6064618317F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSD.Linq.Task1.Lib.Test", "TSD.Linq.Task1.Lib.Test\TSD.Linq.Task1.Lib.Test.csproj", "{BFB4BD85-44D9-4328-BD16-BBCE2A3017DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{017E0749-7C2F-438B-911A-6064618317F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017E0749-7C2F-438B-911A-6064618317F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017E0749-7C2F-438B-911A-6064618317F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017E0749-7C2F-438B-911A-6064618317F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB4BD85-44D9-4328-BD16-BBCE2A3017DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB4BD85-44D9-4328-BD16-BBCE2A3017DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB4BD85-44D9-4328-BD16-BBCE2A3017DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB4BD85-44D9-4328-BD16-BBCE2A3017DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E451E05-E9EC-4F73-9F96-F3616641AF9F}
+	EndGlobalSection
+EndGlobal
