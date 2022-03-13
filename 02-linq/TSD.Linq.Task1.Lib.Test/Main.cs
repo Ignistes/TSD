@@ -217,6 +217,8 @@ namespace TSD.Linq.Task1.Lib.Test
             System.Console.WriteLine("SELL");
             System.Console.WriteLine(maximum[0].Date);
             System.Console.WriteLine(maximum[0].Price);
+            System.Console.WriteLine("BENEFITS");
+            System.Console.WriteLine(maximum[0].Price - minimum[0].Price);
 
 
         }
